@@ -1,0 +1,55 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Details about {{ mytravelspot.name }}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+        <!-- New elements for homepage -->
+        <div id="search-bar">
+            <!-- Add your search bar code here -->
+            <input type="text" placeholder="Search...">
+            <button type="button">Search</button>
+            <h1>{{ mycity.name }}</h1>
+
+        </div>
+    </div>
+    <div id="main">
+        <div id="popular-attractions">
+
+        {% for x in mycity.travelspots.all %}
+            <!-- Add your popular attractions cards here -->
+            <div class="attraction-card">
+                <img class="attraction-image" src="{{ x.image.url }}" alt="Attraction 1">
+                <h3>{{ x.name }}</h3>
+                <p><a href="{{ x.link }}">{{ x.address }}</a></p>
+                <p>{{ x.info }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function toggleSubMenu(subMenuId) {
+            var subMenu = document.getElementById(subMenuId);
+            if (subMenu.style.display === "none") {
+                subMenu.style.display = "block";
+            } else {
+                subMenu.style.display = "none";
+            }
+        }
+    </script>
+
+{% endblock %}

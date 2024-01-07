@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% comment %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">{% endcomment %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/main.css' %}">
+
+<body>
+  <div id="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="/" class="styl1">首頁</a>
+    <a href="#" class="styl1" onclick="toggleSubMenu('citySubMenu')">景點介紹</a>
+    <div class="submenu" id="citySubMenu">
+        <a href="/travelspots/details/1" class="styl1">台北市</a>
+        <a href="/travelspots/details/2" class="styl1">新北市</a>
+        <a href="/travelspots/details/3" class="styl1">基隆市</a>
+        <a href="/travelspots/details/4" class="styl1">宜蘭縣</a>
+        <a href="/travelspots/details/5" class="styl1">桃園市</a>
+        <a href="/travelspots/details/6" class="styl1">新竹縣</a>
+        <a href="/travelspots/details/7" class="styl1">苗栗縣</a>
+        <a href="/travelspots/details/8" class="styl1">台中市</a>
+        <a href="/travelspots/details/9" class="styl1">彰化縣</a>
+        <a href="/travelspots/details/10" class="styl1">雲林縣</a>
+        <a href="/travelspots/details/11" class="styl1">南投縣</a>
+        <a href="/travelspots/details/12" class="styl1">嘉義縣</a>
+        <a href="/travelspots/details/13" class="styl1">台南市</a>
+        <a href="/travelspots/details/14" class="styl1">高雄市</a>
+        <a href="/travelspots/details/15" class="styl1">屏東縣</a>
+        <a href="/travelspots/details/16" class="styl1">花蓮縣</a>
+        <a href="/travelspots/details/17" class="styl1">台東縣</a>
+        <a href="/travelspots/details/18" class="styl1">離島</a>
+
+    </div>
+    <a href="/activities" class="styl1">最近活動</a>
+    <a href="#" class="styl1" onclick="toggleSubMenu('Blogger')">旅遊部落</a>
+    <div class="submenu" id="Blogger">
+      <a href="/article" class="styl1">熱門文章</a>
+      {% if user.is_authenticated %}
+        <a href="/write" class="styl1">編寫你的心得</a>
+      {% else %}
+        <a href="/write" class="styl1">編寫你的心得</a>
+      {% endif %}
+
+    </div>
+  </div>
+  {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={% url 'main' %}"><button id="loginButton">登出</button></a>
+  {% else %}
+    <a href="{% url 'login' %}?next={% url 'main' %}"><button id="loginButton">登入</button></a>
+  {% endif %}
+
+
+  <script>
+    function openNav() {
+        document.getElementById("sidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        if (subMenu.style.display === "none" || subMenu.style.display === "") {
+            subMenu.style.display = "block";
+        } else {
+            subMenu.style.display = "none";
+        }
+    }
+  </script>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

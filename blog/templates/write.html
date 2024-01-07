@@ -1,0 +1,104 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Taiwan Travel - List of all activites
+{% endblock %}
+
+
+{% block content %}
+    <style>
+        p {
+            border: 1px solid black;
+            padding: 10px; /* Optional: Adjust the padding as needed */
+            border-radius: 10px; /* Optional: Add rounded corners */
+        }
+
+        #travelForm {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        
+        #travelForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        #travelForm input,
+        #travelForm textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        
+        #travelForm button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #travelForm button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+        <!-- New elements for homepage -->
+        <div id="search-bar">
+            <!-- Add your search bar code here -->
+            <input type="text" placeholder="Search...">
+            <button type="button">Search</button>
+            <h1>旅遊部落</h1>
+            <h2>編寫你的心得</h2>
+        </div>
+
+        
+    </div>
+    <div id="main">
+        <!-- Form for user input -->
+        <form action="." enctype="multipart/form-data" method="POST" id="travelForm">
+            {% csrf_token %}
+            <label for="projectName">專題名稱:</label>
+            <input type="text" id="projectName" name="projectName" class="styl1">
+
+            <label for="location">地點:</label>
+            <input type="text" id="location" name="location" class="styl1">
+
+            <label for="image">圖片:</label>
+            <input type="file" id="image" name="image" accept="image/*" class="styl1">
+
+            <label for="article">文章:</label>
+            <textarea id="article" name="article" class="styl1" rows="4"></textarea>
+
+            <button type="submit" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+
+  <script>
+      function openNav() {
+          document.getElementById("sidebar").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function close    Nav() {
+          document.getElementById("sidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+      }
+
+      function toggleSubMenu(subMenuId) {
+          var subMenu = document.getElementById(subMenuId);
+          if (subMenu.style.display === "none") {
+              subMenu.style.display = "block";
+          } else {
+              subMenu.style.display = "none";
+          }
+      }
+  </script>
+
+
+{% endblock %}

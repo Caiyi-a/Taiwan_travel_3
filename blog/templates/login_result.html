@@ -1,0 +1,46 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Details about {{ mytravelspot.name }}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+        <!-- New elements for homepage -->
+        <div id="search-bar">
+            <!-- Add your search bar code here -->
+            <input type="text" placeholder="Search...">
+            <button type="button">Search</button>
+        </div>
+    </div>
+    <div id="main">
+        <!-- Display "上傳成功" -->
+        <h1 style="text-align: center; margin-top: 50px; font-size: 36px;">密碼錯誤!</h1>
+
+        <!-- "回到部落" button -->
+        <a href="/"><button style="margin: 20px auto; padding: 10px; font-size: 18px; display: block;">回到首頁</button></a>
+    </div>   
+
+    <script>
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function toggleSubMenu(subMenuId) {
+            var subMenu = document.getElementById(subMenuId);
+            if (subMenu.style.display === "none") {
+                subMenu.style.display = "block";
+            } else {
+                subMenu.style.display = "none";
+            }
+        }
+    </script>
+
+{% endblock %}

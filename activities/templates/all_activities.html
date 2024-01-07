@@ -1,0 +1,58 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Taiwan Travel - List of all activites
+{% endblock %}
+
+
+{% block content %}
+
+  <div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+      <!-- New elements for homepage -->
+      <div id="search-bar">
+          <!-- Add your search bar code here -->
+          <input type="text" placeholder="Search...">
+          <button type="button">Search</button>
+          <h1>最近活動</h1>
+
+      </div>
+   </div>
+
+   <div id="main">
+      <div id="popular-attractions">
+          <!-- Add your popular attractions cards here -->
+          {% for x in activities %}
+            <div class="attraction-card">
+                <img class="attraction-image" src="{{ x.activityimage.url }}" alt="Attraction 1">
+                <h3>{{ x.activityname }}</h3>
+                <p>地點：{{ x.activityspot }}</p>
+                <p>{{ x.activityinfo }}</p>
+            </div>
+          {% endfor %}
+      </div>
+  </div>
+
+  <script>
+      function openNav() {
+          document.getElementById("sidebar").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+          document.getElementById("sidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+      }
+
+      function toggleSubMenu(subMenuId) {
+          var subMenu = document.getElementById(subMenuId);
+          if (subMenu.style.display === "none") {
+              subMenu.style.display = "block";
+          } else {
+              subMenu.style.display = "none";
+          }
+      }
+  </script>
+
+
+{% endblock %}

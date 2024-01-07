@@ -1,0 +1,68 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Taiwan Travel - List of all activites
+{% endblock %}
+
+
+{% block content %}
+    <style>
+        p {
+            border: 1px solid black;
+            padding: 10px; /* Optional: Adjust the padding as needed */
+            border-radius: 10px; /* Optional: Add rounded corners */
+        }
+
+    </style>
+
+    <div id>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+        <!-- New elements for homepage -->
+        <div id="search-bar">
+            <!-- Add your search bar code here -->
+            <input type="text" placeholder="Search...">
+            <button type="button">Search</button>
+            <h1>旅遊部落</h1>
+            <h2>熱門文章</h2>
+        </div>
+
+
+        
+    </div>
+    <div id="main">
+        <div id="popular-attractions">
+            <!-- Add your popular attractions cards here -->
+            {% for x in comments %}
+            <div class="attraction-card">
+                <img class="attraction-image" src="{{ x.image.url }}" alt="Attraction 1">
+                <h3>{{ x.projectName }}</h3>
+                <p>{{ x.location }}</p>
+                <p>{{ x.article }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+  <script>
+      function openNav() {
+          document.getElementById("sidebar").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+          document.getElementById("sidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+      }
+
+      function toggleSubMenu(subMenuId) {
+          var subMenu = document.getElementById(subMenuId);
+          if (subMenu.style.display === "none") {
+              subMenu.style.display = "block";
+          } else {
+              subMenu.style.display = "none";
+          }
+      }
+  </script>
+
+
+{% endblock %}

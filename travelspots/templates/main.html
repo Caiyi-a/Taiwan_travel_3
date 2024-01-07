@@ -1,0 +1,154 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+  My Travelspots
+{% endblock %}
+
+
+{% block content %}
+  <style>
+    #announcementa {
+      margin: 20px;
+      padding: 10px;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    #popular-attractionsa {
+        margin: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .attraction-carda {
+      width: 100%; /* 调整为相对宽度，以适应不同窗口大小 */
+      max-width: 100%; /* 设置最大宽度，以避免图片过大 */
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #DCE3E5;
+      box-sizing: border-box; /* 确保 padding 不会使元素超出宽度 */
+    }
+
+    .attraction-imagea {
+      width: 100%;
+      height: auto; /* 自适应高度，保持图片比例 */
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #bbb; /* 未選中狀態的顏色 */
+      display: inline-block;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    .slick-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    /* 用於設置選中狀態的點的顏色 */
+    .slick-dots .slick-active .dot {
+      background-color: #60c6ca; /* 選中狀態的顏色 */
+    }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
+  <div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+    <!-- New elements for homepage -->
+    <div id="search-bar">
+        <!-- Add your search bar code here -->
+        <input type="text" placeholder="Search...">
+        <button type="button">Search</button>
+        <h1>首頁</h1>
+
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="announcementa">
+      <div id="popular-attractionsa">
+        <!-- Add more cards as needed -->
+          <div class="attraction-carda">
+              <a href="https://www.klook.com/zh-TW/event-detail/101022146-2024-bon-pain-festival/" target="_blank">
+                  <img class="attraction-imagea" src="{% static '/image/img1.png' %}" alt="Attraction 1">
+              </a>
+          </div>
+          <div class="attraction-carda">
+              <a href="https://tgs.tca.org.tw/index_c.php" target="_blank">
+                  <img class="attraction-imagea" src="{% static '/image/img2.png' %}" alt="Attraction 2">
+              </a>
+          </div>
+          <div class="attraction-carda">
+              <a href="https://www.facebook.com/JOWOTW" target="_blank">
+                  <img class="attraction-imagea" src="{% static '/image/img3.png' %}" alt="Attraction 2">
+              </a>
+          </div>
+          <div class="attraction-carda">
+              <a href="https://www.facebook.com/pro.market.tw" target="_blank">
+                  <img class="attraction-imagea" src="{% static '/image/img4.png' %}" alt="Attraction 2">
+              </a>
+          </div>
+        </div>
+      </div>
+    
+    <div id="popular-attractions">
+        <!-- Add your popular attractions cards here -->
+      {% for x in myhot %}
+        <div class="attraction-card">
+            <img class="attraction-image" src="{{ x.himage.url }}" alt="Attraction 1">
+            <h3>{{ x.hname }}</h3>
+            <p><a href="{{ x.hlink }}">{{ x.hlocation }}</a></p>
+            <p>{{ x.hinfo }}</p>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+
+  <script>
+      $(document).ready(function(){
+          $('#popular-attractionsa').slick({
+              infinite: true,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              autoplay: true,
+              autoplaySpeed: 3000,
+              dots: true,
+              customPaging: function(slider, i) {
+              return '<button class="dot">' + (i + 1) + '</button>';}
+          });
+      });
+  </script>
+
+
+
+{% comment %}
+  <h1>My Travelspots</h1>
+
+  <h3>Travelspots</h3>
+  
+  <p>Check out all our <a href="travelspots/">travelspots</a></p>
+  {% endcomment %}
+
+{% endblock %}

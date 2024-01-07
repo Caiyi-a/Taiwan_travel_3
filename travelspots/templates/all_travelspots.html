@@ -1,0 +1,106 @@
+{% extends "master.html" %}
+
+{% block title %}
+  My Travelspots - List of all travelspot
+{% endblock %}
+
+{% block content %}
+  <div id="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="hello.html" class="styl1">首頁</a>
+    <a href="#" class="styl1" onclick="toggleSubMenu('citySubMenu')">景點介紹</a>
+    <div class="submenu" id="citySubMenu">
+        <a href="#" class="styl1">台北市</a>
+        <a href="#" class="styl1">新北市</a>
+        <a href="#" class="styl1">基隆市</a>
+        <a href="#" class="styl1">宜蘭縣</a>
+        <a href="#" class="styl1">桃園市</a>
+        <a href="#" class="styl1">新竹縣</a>
+        <a href="#" class="styl1">苗栗縣</a>
+        <a href="#" class="styl1">台中市</a>
+        <a href="#" class="styl1">彰化縣</a>
+        <a href="#" class="styl1">雲林縣</a>
+        <a href="#" class="styl1">南投縣</a>
+        <a href="#" class="styl1">嘉義縣</a>
+        <a href="#" class="styl1">台南市</a>
+        <a href="#" class="styl1">高雄市</a>
+        <a href="#" class="styl1">屏東縣</a>
+        <a href="#" class="styl1">花蓮縣</a>
+        <a href="#" class="styl1">台東縣</a>
+
+    </div>
+    <a href="hb.html" class="styl1">最近活動</a>
+    <a href="link.html" class="styl1">旅遊部落</a>
+  </div>
+
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">☰</span>
+    <!-- New elements for homepage -->
+    <div id="search-bar">
+        <!-- Add your search bar code here -->
+        <input type="text" placeholder="Search...">
+        <button type="button">Search</button>
+    </div>
+
+    <div id="announcement">
+        <!-- Add your announcement image here -->
+        <img src="announcement.jpg" alt="Announcement Image" style="width: 100%;">
+    </div>
+
+    <div id="popular-attractions">
+        <!-- Add your popular attractions cards here -->
+        <div class="attraction-card">
+            <img class="attraction-image" src="attraction1.jpg" alt="Attraction 1">
+            <h3>Attraction 1</h3>
+            <p>Location: City 1</p>
+        </div>
+
+        <div class="attraction-card">
+            <img class="attraction-image" src="attraction2.jpg" alt="Attraction 2">
+            <h3>Attraction 2</h3>
+            <p>Location: City 2</p>
+        </div>
+
+        <div class="attraction-card">
+            <img class="attraction-image" src="attraction3.jpg" alt="Attraction 3">
+            <h3>Attraction 3</h3>
+            <p>Location: City 3</p>
+        </div>
+        <!-- Add more cards as needed -->
+    </div>
+  </div>
+
+  <script>
+    function openNav() {
+        document.getElementById("sidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+
+    function toggleSubMenu(subMenuId) {
+        var subMenu = document.getElementById(subMenuId);
+        if (subMenu.style.display === "none") {
+            subMenu.style.display = "block";
+        } else {
+            subMenu.style.display = "none";
+        }
+    }
+  </script>
+
+{% comment %}
+  <p><a href='/'>HOME</a></p>
+  
+  <h1>Travelspots</h1>
+  
+  <ul>
+    {% for x in mytravelspots %}
+      <li><a href="details/{{ x.id }}">{{ x.name }}</li>
+    {% endfor %}
+  </ul>
+
+{% endcomment %}
+{% endblock %}
